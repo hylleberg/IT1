@@ -30,11 +30,16 @@ public class UserInterface {
 
     public double getUserInput(String wantedValue){
 
-        System.out.println("Please input the " + wantedValue +  " value");
-        Scanner scan = new Scanner(System.in);
-        String value = scan.nextLine();
-        return new Double(value);
+        try {
+            System.out.println("Please input the " + wantedValue +  " value");
+            Scanner scan = new Scanner(System.in);
+            String value = scan.nextLine();
+            return new Double(value);
+        } catch(NumberFormatException e) {
+            System.out.println("Input Error!");
+            return getUserInput(wantedValue);
 
+        }
     }
 
 
