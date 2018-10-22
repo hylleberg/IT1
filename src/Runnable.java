@@ -1,3 +1,6 @@
+/**
+ *
+ */
 public class Runnable {
 
     private double min;
