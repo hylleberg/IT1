@@ -6,7 +6,12 @@ public class Main {
      */
     public static void main(String args[])
     {
-    new Runnable();
+        Runnable monitor = new Runnable();
+        try {
+            monitor.run();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
     }
 

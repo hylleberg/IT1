@@ -9,18 +9,18 @@ public class Runnable {
     int latestSensorData;
     private UserInterface ui;
     SensorRead sensorRead;
+    private NotificationSystem ns;
 
     Runnable(){
 
         this.ui = new UserInterface();
         this.sensorRead = new SensorRead();
-
+        this.ns = new NotificationSystem();
 
         setMin(this.ui.getUserInput("min"));
         setMax(this.ui.getUserInput("max"));
         setUrgent(this.ui.getUserInput("urgent"));
 
-        run();
     }
 
     /**
@@ -28,15 +28,28 @@ public class Runnable {
      *
      */
 
-    private void run(){
+    public void run() throws InterruptedException {
 
 
         while (true){
 
             this.latestSensorData = this.sensorRead.getValue();
 
+            // inner loop Control every 30.00 ms - every other loop
 
-            System.out.println(getValue(this.latestSensorData));
+
+
+
+            // Control min max, urgent
+            if (this.latestSensorData < getMin() || this.latestSensorData > getMax()){
+                this.ui.notification("Outside normal values: " + getValue(this.latestSensorData) + " C");
+                if (this.latestSensorData < (getMin()-getUrgent()) ||
+                        this.latestSensorData > (getUrgent()+getMax())){
+                    this.ns.send("*** Urgent exceeded *** : " + getValue(this.latestSensorData) + " C");
+                }
+            }
+
+            Thread.sleep(15000);
 
             //Read value in a specific interval
             //Notify for threshold limit breaches, NotificationSystem();
@@ -48,7 +61,7 @@ public class Runnable {
 
     public double getValue(int sensorData){
 
-        return (sensorData*4.0/50.0)+24.0; //return double value
+        return (double)Math.round(((sensorData*4.0/50.0)+24.0)*100.0)/100.0; //return double value, 2 decimals
 
     }
 
