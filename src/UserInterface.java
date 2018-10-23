@@ -1,5 +1,7 @@
 import java.util.Scanner;
 
+// da vi skal kunne tage imod input hentes Scanner ind
+
 /**
  *
  */
@@ -42,6 +44,8 @@ public class UserInterface {
         }
     }
 
+
+        // DISSE BRUGES ALDRIG?                             ???
 
     public void printMax() {
 
