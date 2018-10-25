@@ -1,5 +1,5 @@
 /**
- *
+ * Runnable - continuous process
  */
 public class Runnable {
 
@@ -113,6 +113,7 @@ public class Runnable {
     public double getValue(int sensorData){
 
         //vi konverterer til en double for at få decimaler med og begrænser til 2 decimaler
+        //denne laver en fejl som fanges i Main (try ...)
 
         return (double)Math.round(((sensorData*4.0/50.0)+24.0)*100.0)/100.0; //return double value, 2 decimals
 
@@ -122,7 +123,7 @@ public class Runnable {
 
 
     //urgent må ikke være mindre end 0 da dette ville tilkalde læge uden/før sygeplejerske og ikke giver mening
-    //hvis den er sat forkert nulstilles den til startværdien på 10
+    //hvis den er sat forkert nulstilles den til startværdien fra
 
     private void setUrgent(double urgent) {
 
@@ -133,6 +134,7 @@ public class Runnable {
     }
 
     //vi tjekker at min ligger indenfor intervallet 150-200 da disse er eneste mulige værdier
+    //hvis den er sat forkert nulstilles den til startværdien fra toppen
 
     private void setMin(double min) {
 
@@ -156,7 +158,7 @@ public class Runnable {
         }
     }
 
-    //her defineres at getUrgent(), getMin() og getMax() returnere deres respektive værdier når de kaldes
+    //her defineres at getUrgent(), getMin() og getMax() returnerer deres respektive værdier når de kaldes
 
     private double getUrgent() {
 

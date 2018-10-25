@@ -1,5 +1,5 @@
 /**
- *
+ * Sensor (EMULATED FOR NOW)
  */
 public class SensorRead {
 
@@ -14,6 +14,8 @@ public class SensorRead {
      *
      * @return int
      */
+
+    //vi laver en metode som ved kald returnerer en (emuleret) værdi fra sensoren
 
     public int getValue(){
 

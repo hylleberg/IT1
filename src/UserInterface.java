@@ -3,7 +3,7 @@ import java.util.Scanner;
 // da vi skal kunne tage imod input hentes Scanner ind
 
 /**
- *
+ * User Interface - prints to console; takes input
  */
 public class UserInterface {
 
@@ -17,6 +17,8 @@ public class UserInterface {
      * @param text
      */
 
+    // er en println nødvendig når den er void? Hvad er ideen?
+
     public void notification(String text) {
 
         System.out.println(text);
@@ -29,6 +31,8 @@ public class UserInterface {
      * @param wantedValue
      * @return
      */
+
+    //standardkladde til input. Dovenskab, skrive kladden en gang og genbruge den til når bruger indtaster min max urgent.
 
     public double getUserInput(String wantedValue){
 
