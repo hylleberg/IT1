@@ -5,21 +5,22 @@ import java.util.Scanner;
 /**
  * User Interface - prints to console; takes input
  */
-public class UserInterface {
+class UserInterface {
 
-    public UserInterface(){
+    UserInterface(){
 
 
     }
 
-    /**
-     * Prints notification string text
-     * @param text
-     */
 
     // er en println nødvendig når den er void? Hvad er ideen?
 
-    public void notification(String text) {
+    /**
+     * Prints notification string text
+     *
+     * @param text the text that gets printed
+     */
+    void notification(String text) {
 
         System.out.println(text);
 
@@ -28,13 +29,13 @@ public class UserInterface {
     /**
      * Min and max values put in *can* exceed thresholds with warnings (!!!)
      *
-     * @param wantedValue
-     * @return
+     * @param wantedValue whether we are asking for min/max/urgent (simply an information)
+     * @return the users inputted value, returns -1 if the input value is empty.
      */
 
     //standardkladde til input. Dovenskab, skrive kladden en gang og genbruge den til når bruger indtaster min max urgent.
 
-    public double getUserInput(String wantedValue){
+    double getUserInput(String wantedValue){
 
         try {
             System.out.println("Please input the " + wantedValue +  " value");
@@ -51,17 +52,20 @@ public class UserInterface {
 
         // DISSE BRUGES ALDRIG?                             ???
 
-    public void printMax() {
+    @SuppressWarnings("unused")
+    void printMax() {
 
         //Prints max value to console
     }
 
-    public void printMin() {
+    @SuppressWarnings("unused")
+    void printMin() {
 
         //Prints min value to console
     }
 
-    public void printUrgent() {
+    @SuppressWarnings("unused")
+    void printUrgent() {
 
         //Prints urgent value to console
     }

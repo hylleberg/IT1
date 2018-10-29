@@ -1,13 +1,13 @@
-public class NotificationSystem {
+class NotificationSystem {
 
     /**
      * Notification System
      */
-    public NotificationSystem(){
+    NotificationSystem(){
 
     }
 
-    public void send(String text){
+    void send(String text){
 
         //denne del sørger for en samlet sysout der håndterer tekstlinjer
         //Den er sat til at give notification i konsol,

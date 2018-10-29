@@ -1,10 +1,10 @@
 /**
  * Sensor (EMULATED FOR NOW)
  */
-public class SensorRead {
+class SensorRead {
 
 
-    public SensorRead(){
+    SensorRead(){
 
 
     }
@@ -17,7 +17,7 @@ public class SensorRead {
 
     //vi laver en metode som ved kald returnerer en (emuleret) værdi fra sensoren
 
-    public int getValue(){
+    int getValue(){
 
         // her dannes den ønskede værdi i intervallet 150-200. return sørger for at der altid er en værdi.
 

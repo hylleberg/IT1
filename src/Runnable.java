@@ -1,7 +1,7 @@
 /**
  * Runnable - continuous process
  */
-public class Runnable {
+class Runnable {
 
     //Vi starter med værdier - som kan ændres ved input
 
@@ -9,9 +9,6 @@ public class Runnable {
     private double max = 180;
     private double urgent = 10;
 
-    //latestSensorData specificeres som en int
-
-    int latestSensorData;
 
     //UserInterfase navngives med forkortels ui
 
@@ -19,7 +16,7 @@ public class Runnable {
 
     //                                                      ???
 
-    SensorRead sensorRead;
+    private SensorRead sensorRead;
 
     //NotificationSystem navngives med forkortelse ns
 
@@ -48,7 +45,11 @@ public class Runnable {
      *
      */
 
-    public void run() throws InterruptedException {
+    void run() throws InterruptedException {
+
+        //latestSensorData specificeres som en int
+
+        int latestSensorData;
 
         //Start på løkke til at tjekke værdier hver 15000 ms, printe læst værdi hver 30.000 ms
         //løkke lavet til at count= % 2 (dvs. lige tal) så springer den videre uden at printe læst værdi
@@ -58,11 +59,12 @@ public class Runnable {
 
         int count = 0;
 
+        //noinspection InfiniteLoopStatement
         while (true){
 
             //henter seneste værdi fra sensorRead og gemmer det i latestSensorData
 
-            this.latestSensorData = this.sensorRead.getValue();
+            latestSensorData = this.sensorRead.getValue();
 
             //count tjekkes for at være et lige tal (modulus 2) og sættes til 0 hvis det er korrekt
 
@@ -72,7 +74,7 @@ public class Runnable {
             // Hvis den udføres printes en linje i konsollen
 
             if (count == 0){
-                this.ui.notification("Latest value in C: " + getValue(this.latestSensorData));
+                this.ui.notification("Latest value in C: " + getValue(latestSensorData));
             }
 
             //herefter kontrolleres grænseværdier (uanset count) da disse skal tjekkes hvert 15 sek
@@ -80,15 +82,15 @@ public class Runnable {
 
             // Control min max, urgent
             //første if: hvis læste værdi er under min ELLER over max: print linje OG udfør næste if
-            if (this.latestSensorData < getMin() || this.latestSensorData > getMax()){
-                this.ui.notification("Outside normal values: " + getValue(this.latestSensorData) + " C");
+            if (latestSensorData < getMin() || latestSensorData > getMax()){
+                this.ui.notification("Outside normal values: " + getValue(latestSensorData) + " C");
 
                 //denne if laves kun hvis første if aktiveres. Kontrollerer om læste værdi er uden for urgent-interval: printer linje
                 //Denne if udføres kun hvis over/under min/max da urgent altid ligger udenfor disse og ellers ikke vil være relevant
 
-                if (this.latestSensorData < (getMin()-getUrgent()) ||
-                        this.latestSensorData > (getUrgent()+getMax())){
-                    this.ns.send("*** Urgent exceeded : " + getValue(this.latestSensorData) + " C");
+                if (latestSensorData < (getMin()-getUrgent()) ||
+                        latestSensorData > (getUrgent()+getMax())){
+                    this.ns.send("*** Urgent exceeded : " + getValue(latestSensorData) + " C");
                 }
             }
 
@@ -110,7 +112,7 @@ public class Runnable {
         //konvertering fra sensorData-værdi til grader celcius med 2 decimaler
         //vi henter seneste værdi som int fra sensoren
 
-    public double getValue(int sensorData){
+    private double getValue(int sensorData){
 
         //vi konverterer til en double for at få decimaler med og begrænser til 2 decimaler
         //denne laver en fejl som fanges i Main (try ...)
