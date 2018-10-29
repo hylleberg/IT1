@@ -3,7 +3,9 @@
  */
 class SensorRead {
 
-
+    /**
+     *
+     */
     SensorRead(){
 
 

@@ -4,24 +4,22 @@
 class Runnable {
 
     //Vi starter med værdier - som kan ændres ved input
-
     private double min = 170;
     private double max = 180;
     private double urgent = 10;
 
-
     //UserInterfase navngives med forkortels ui
-
     private UserInterface ui;
 
     //                                                      ???
-
     private SensorRead sensorRead;
 
     //NotificationSystem navngives med forkortelse ns
-
     private NotificationSystem ns;
 
+    /**
+     *
+     */
     Runnable(){
 
         //UserInterface oprettes
@@ -112,6 +110,11 @@ class Runnable {
         //konvertering fra sensorData-værdi til grader celcius med 2 decimaler
         //vi henter seneste værdi som int fra sensoren
 
+    /**
+     *
+     * @param sensorData
+     * @return
+     */
     private double getValue(int sensorData){
 
         //vi konverterer til en double for at få decimaler med og begrænser til 2 decimaler
@@ -127,6 +130,10 @@ class Runnable {
     //urgent må ikke være mindre end 0 da dette ville tilkalde læge uden/før sygeplejerske og ikke giver mening
     //hvis den er sat forkert nulstilles den til startværdien fra
 
+    /**
+     *
+     * @param urgent
+     */
     private void setUrgent(double urgent) {
 
         //Assigns internal urgent value
@@ -138,6 +145,10 @@ class Runnable {
     //vi tjekker at min ligger indenfor intervallet 150-200 da disse er eneste mulige værdier
     //hvis den er sat forkert nulstilles den til startværdien fra toppen
 
+    /**
+     *
+     * @param min
+     */
     private void setMin(double min) {
 
         //Assigns internal minimum value
@@ -149,6 +160,10 @@ class Runnable {
     //vi tjekker at max ligger indenfor intervallerne OG at den er større end min
     //Hvis ikke den er større end min sættes den til min+0.01
 
+    /**
+     *
+     * @param max
+     */
     private void setMax(double max) {
 
         //Assigns internal maximum value
@@ -162,6 +177,9 @@ class Runnable {
 
     //her defineres at getUrgent(), getMin() og getMax() returnerer deres respektive værdier når de kaldes
 
+    /**
+     *
+     */
     private double getUrgent() {
 
         //returns urgent value
@@ -169,6 +187,9 @@ class Runnable {
 
     }
 
+    /**
+     *
+     */
     private double getMin() {
 
         //returns minimum value
@@ -176,6 +197,9 @@ class Runnable {
 
     }
 
+    /**
+     *
+     */
     private double getMax() {
 
         //returns maximum value

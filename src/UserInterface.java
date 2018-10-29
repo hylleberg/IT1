@@ -1,12 +1,15 @@
-import java.util.Scanner;
-
+// import statements. Scanner is used for reading the input.
 // da vi skal kunne tage imod input hentes Scanner ind
+import java.util.Scanner;
 
 /**
  * User Interface - prints to console; takes input
  */
 class UserInterface {
 
+    /**
+     *
+     */
     UserInterface(){
 
 

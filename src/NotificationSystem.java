@@ -1,3 +1,6 @@
+/**
+ *
+ */
 class NotificationSystem {
 
     /**
@@ -7,6 +10,10 @@ class NotificationSystem {
 
     }
 
+    /**
+     *
+     * @param text
+     */
     void send(String text){
 
         //denne del sørger for en samlet sysout der håndterer tekstlinjer
