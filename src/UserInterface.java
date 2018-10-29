@@ -38,16 +38,20 @@ class UserInterface {
 
     //standardkladde til input. Dovenskab, skrive kladden en gang og genbruge den til når bruger indtaster min max urgent.
 
-    double getUserInput(String wantedValue){
+    double getUserInput(String wantedValue, double stdVal){
 
         try {
-            System.out.println("Please input the " + wantedValue +  " value");
+            System.out.println("Please input the " + wantedValue);
             Scanner scan = new Scanner(System.in);
             String value = scan.nextLine();
             return new Double(value);
         } catch(NumberFormatException e) {
+            if (e.getMessage().equals("empty String")) {
+                System.out.println("You did not input anything, we have chosen: " + stdVal);
+                return -1;
+            }
             System.out.println("Input Error!");
-            return getUserInput(wantedValue);
+            return getUserInput(wantedValue, stdVal);
 
         }
     }

@@ -4,9 +4,9 @@
 class Runnable {
 
     //Vi starter med værdier - som kan ændres ved input
-    private double min = 170;
-    private double max = 180;
-    private double urgent = 10;
+    private double min = getValue(150);
+    private double max = getValue(200);
+    private double urgent = 1;
 
     //UserInterfase navngives med forkortels ui
     private UserInterface ui;
@@ -32,9 +32,9 @@ class Runnable {
 
         //Nu kaldes getUserInput fra ui (UserInterface) og beder om input
 
-        setMin(this.ui.getUserInput("min"));
-        setMax(this.ui.getUserInput("max"));
-        setUrgent(this.ui.getUserInput("urgent"));
+        setMin(this.ui.getUserInput("minimum temperature", this.min));
+        setMax(this.ui.getUserInput("maximum temperature", this.max));
+        setUrgent(this.ui.getUserInput("urgent deviation", this.urgent));
 
     }
 
@@ -152,7 +152,7 @@ class Runnable {
     private void setMin(double min) {
 
         //Assigns internal minimum value
-        if (min >= 150 && min < 200) {
+        if (min >= getValue(0) && min < getValue(255)) {
             this.min = min;
         }
     }
@@ -167,7 +167,7 @@ class Runnable {
     private void setMax(double max) {
 
         //Assigns internal maximum value
-        if (max > 150 && max <= 200) {
+        if (max > getValue(0) && max <= getValue(255)) {
             this.max = max;
         }
         if (this.max < this.min) {
