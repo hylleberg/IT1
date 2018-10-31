@@ -92,6 +92,8 @@ class Runnable {
                 }
             }
 
+            System.out.println(".......count: " + count + " Min:" + getMin() + " Max:" + getMax() + " Urg:" + getUrgent());
+
             //for at løkken virker tillæges +1 således at count hver 2. gang er lige/ulige
 
             count++; //increment counter
