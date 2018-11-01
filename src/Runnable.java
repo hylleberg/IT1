@@ -80,14 +80,14 @@ class Runnable {
 
             // Control min max, urgent
             //første if: hvis læste værdi er under min ELLER over max: print linje OG udfør næste if
-            if (latestSensorData < getMin() || latestSensorData > getMax()){
+            if (getValue(latestSensorData) < getMin() || getValue(latestSensorData) > getMax()){
                 this.ui.notification("Outside normal values: " + getValue(latestSensorData) + " C");
 
                 //denne if laves kun hvis første if aktiveres. Kontrollerer om læste værdi er uden for urgent-interval: printer linje
                 //Denne if udføres kun hvis over/under min/max da urgent altid ligger udenfor disse og ellers ikke vil være relevant
 
-                if (latestSensorData < (getMin()-getUrgent()) ||
-                        latestSensorData > (getUrgent()+getMax())){
+                if (getValue(latestSensorData) < (getMin()-getUrgent()) ||
+                        getValue(latestSensorData) > (getUrgent()+getMax())){
                     this.ns.send("*** Urgent exceeded : " + getValue(latestSensorData) + " C");
                 }
             }
@@ -95,6 +95,15 @@ class Runnable {
             //for at løkken virker tillæges +1 således at count hver 2. gang er lige/ulige
 
             count++; //increment counter
+
+            System.out.println("- - - - " + getValue(latestSensorData));
+
+            // Debug ***: System.out.println("Count:" + count + ". Min:" + getMin() + " Max:" + getMax() + ". Urg:" + getUrgent() );
+            // Debug ***: System.out.println("sensor-value: " + latestSensorData + ". c-value:" + getValue(latestSensorData));
+            // Debug ***: System.out.println("************** End of loop ***************");
+            // Debug ***: System.out.println("- - - - " + getValue(latestSensorData));
+
+
 
             //herefter er der pause i 15 sek
 
@@ -118,7 +127,6 @@ class Runnable {
     private double getValue(int sensorData){
 
         //vi konverterer til en double for at få decimaler med og begrænser til 2 decimaler
-        //denne laver en fejl som fanges i Main (try ...)
 
         return (double)Math.round(((sensorData*4.0/50.0)+24.0)*100.0)/100.0; //return double value, 2 decimals
 
