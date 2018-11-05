@@ -4,9 +4,9 @@
 class Runnable {
 
     //Vi starter med værdier - som kan ændres ved input
-    private double min = 170;
-    private double max = 180;
-    private double urgent = 10;
+    private double min = getValue(150);
+    private double max = getValue(200);
+    private double urgent = 1;
 
     //UserInterfase navngives med forkortels ui
     private UserInterface ui;
@@ -32,9 +32,9 @@ class Runnable {
 
         //Nu kaldes getUserInput fra ui (UserInterface) og beder om input
 
-        setMin(this.ui.getUserInput("min"));
-        setMax(this.ui.getUserInput("max"));
-        setUrgent(this.ui.getUserInput("urgent"));
+        setMin(this.ui.getUserInput("minimum temperature", this.min));
+        setMax(this.ui.getUserInput("maximum temperature", this.max));
+        setUrgent(this.ui.getUserInput("urgent deviation", this.urgent));
 
     }
 
@@ -80,14 +80,14 @@ class Runnable {
 
             // Control min max, urgent
             //første if: hvis læste værdi er under min ELLER over max: print linje OG udfør næste if
-            if (latestSensorData < getMin() || latestSensorData > getMax()){
+            if (getValue(latestSensorData) < getMin() || getValue(latestSensorData) > getMax()){
                 this.ui.notification("Outside normal values: " + getValue(latestSensorData) + " C");
 
                 //denne if laves kun hvis første if aktiveres. Kontrollerer om læste værdi er uden for urgent-interval: printer linje
                 //Denne if udføres kun hvis over/under min/max da urgent altid ligger udenfor disse og ellers ikke vil være relevant
 
-                if (latestSensorData < (getMin()-getUrgent()) ||
-                        latestSensorData > (getUrgent()+getMax())){
+                if (getValue(latestSensorData) < (getMin()-getUrgent()) ||
+                        getValue(latestSensorData) > (getUrgent()+getMax())){
                     this.ns.send("*** Urgent exceeded : " + getValue(latestSensorData) + " C");
                 }
             }
@@ -97,6 +97,15 @@ class Runnable {
             //for at løkken virker tillæges +1 således at count hver 2. gang er lige/ulige
 
             count++; //increment counter
+
+            System.out.println("- - - - " + getValue(latestSensorData));
+
+            // Debug ***: System.out.println("Count:" + count + ". Min:" + getMin() + " Max:" + getMax() + ". Urg:" + getUrgent() );
+            // Debug ***: System.out.println("sensor-value: " + latestSensorData + ". c-value:" + getValue(latestSensorData));
+            // Debug ***: System.out.println("************** End of loop ***************");
+            // Debug ***: System.out.println("- - - - " + getValue(latestSensorData));
+
+
 
             //herefter er der pause i 15 sek
 
@@ -120,7 +129,6 @@ class Runnable {
     private double getValue(int sensorData){
 
         //vi konverterer til en double for at få decimaler med og begrænser til 2 decimaler
-        //denne laver en fejl som fanges i Main (try ...)
 
         return (double)Math.round(((sensorData*4.0/50.0)+24.0)*100.0)/100.0; //return double value, 2 decimals
 
@@ -154,7 +162,7 @@ class Runnable {
     private void setMin(double min) {
 
         //Assigns internal minimum value
-        if (min >= 150 && min < 200) {
+        if (min >= getValue(0) && min < getValue(255)) {
             this.min = min;
         }
     }
@@ -169,7 +177,7 @@ class Runnable {
     private void setMax(double max) {
 
         //Assigns internal maximum value
-        if (max > 150 && max <= 200) {
+        if (max > getValue(0) && max <= getValue(255)) {
             this.max = max;
         }
         if (this.max < this.min) {

@@ -24,7 +24,7 @@ class SensorRead {
         // her dannes den ønskede værdi i intervallet 150-200. return sørger for at der altid er en værdi.
 
         int sensorData;
-        sensorData = (int) (150 + Math.random()*50);
+        sensorData = (int) (Math.random()*255);
         return sensorData;
     }
 
