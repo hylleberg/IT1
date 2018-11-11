@@ -17,6 +17,9 @@ class Runnable {
     //NotificationSystem navngives med forkortelse ns
     private NotificationSystem ns;
 
+    //Filewriter class
+    private FileWriter fw;
+
     /**
      *
      */
@@ -29,6 +32,7 @@ class Runnable {
         this.ui = new UserInterface();
         this.sensorRead = new SensorRead();
         this.ns = new NotificationSystem();
+        this.fw = new FileWriter();
 
         //Nu kaldes getUserInput fra ui (UserInterface) og beder om input
 
@@ -63,6 +67,7 @@ class Runnable {
             //henter seneste værdi fra sensorRead og gemmer det i latestSensorData
 
             latestSensorData = this.sensorRead.getValue();
+            this.fw.writeTemperatureToFile(getValue(latestSensorData));
 
             //count tjekkes for at være et lige tal (modulus 2) og sættes til 0 hvis det er korrekt
 
@@ -72,7 +77,7 @@ class Runnable {
             // Hvis den udføres printes en linje i konsollen
 
             if (count == 0){
-                this.ui.notification("Latest value in C: " + getValue(latestSensorData));
+                this.ui.notification("Latest value in degrees Celcius: " + getValue(latestSensorData));
             }
 
             //herefter kontrolleres grænseværdier (uanset count) da disse skal tjekkes hvert 15 sek
