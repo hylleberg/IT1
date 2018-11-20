@@ -18,7 +18,7 @@ class Runnable {
     private NotificationSystem ns;
 
     //Filewriter class
-    private FileWriter fw;
+    private WriteToFile fw;
 
     /**
      *
@@ -32,7 +32,7 @@ class Runnable {
         this.ui = new UserInterface();
         this.sensorRead = new SensorRead();
         this.ns = new NotificationSystem();
-        this.fw = new FileWriter();
+        this.fw = new WriteToFile();
 
         //Nu kaldes getUserInput fra ui (UserInterface) og beder om input
 
