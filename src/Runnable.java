@@ -7,6 +7,7 @@ class Runnable {
     private double min = getValue(150);
     private double max = getValue(200);
     private double urgent = 1;
+    private boolean emulated = false;
 
     //UserInterfase navngives med forkortels ui
     private UserInterface ui;
@@ -30,7 +31,10 @@ class Runnable {
         //Notificationsystem oprettes og aktiveres hvis værdier overskrides
 
         this.ui = new UserInterface();
-        this.sensorRead = new SensorRead();
+        this.sensorRead = new SensorRead(this.emulated);
+        if (this.sensorRead.emulation != this.emulated) {
+            this.ui.usingEmulatedInstead();
+        }
         this.ns = new NotificationSystem();
         this.fw = new WriteToFile();
 
@@ -135,7 +139,11 @@ class Runnable {
 
         //vi konverterer til en double for at få decimaler med og begrænser til 2 decimaler
 
-        return (double)Math.round(((sensorData*4.0/50.0)+24.0)*100.0)/100.0; //return double value, 2 decimals
+        if (this.sensorRead.emulation) {
+            return (double)Math.round(((sensorData*4.0/50.0)+24.0)*100.0)/100.0; //return double value, 2 decimals
+        } else {
+            return sensorData;
+        }
 
     }
 
