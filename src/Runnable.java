@@ -61,6 +61,7 @@ class Runnable {
 
         //latestSensorData specificeres som en int
 
+        double previousSensorData = -1;
         double latestSensorData;
 
         //Start på løkke til at tjekke værdier hver 15000 ms, printe læst værdi hver 30.000 ms
@@ -77,6 +78,10 @@ class Runnable {
             //henter seneste værdi fra sensorRead og gemmer det i latestSensorData
 
             latestSensorData = this.sensorRead.getValue();
+            if (((latestSensorData - previousSensorData) > 2 || (latestSensorData - previousSensorData) < -2) && previousSensorData != -1) {
+                this.ui.misplacementNotification(Math.abs(latestSensorData-previousSensorData));
+            }
+            previousSensorData = latestSensorData;
             this.fw.writeTemperatureToFile(getValue(latestSensorData));
 
             //count tjekkes for at være et lige tal (modulus 2) og sættes til 0 hvis det er korrekt
@@ -103,7 +108,8 @@ class Runnable {
 
                 if (getValue(latestSensorData) < (getMin()-getUrgent()) ||
                         getValue(latestSensorData) > (getUrgent()+getMax())){
-                    this.ns.send("*** Urgent exceeded : " + getValue(latestSensorData) + " C");
+                    this.ui.notification("*** Urgent exceeded : " + getValue(latestSensorData) + " C ***");
+                    this.ns.send();
                 }
             }
 
@@ -114,13 +120,6 @@ class Runnable {
             count++; //increment counter
 
             System.out.println("- - - - " + getValue(latestSensorData));
-
-            // Debug ***: System.out.println("Count:" + count + ". Min:" + getMin() + " Max:" + getMax() + ". Urg:" + getUrgent() );
-            // Debug ***: System.out.println("sensor-value: " + latestSensorData + ". c-value:" + getValue(latestSensorData));
-            // Debug ***: System.out.println("************** End of loop ***************");
-            // Debug ***: System.out.println("- - - - " + getValue(latestSensorData));
-
-
 
             //herefter er der pause i 15 sek
 

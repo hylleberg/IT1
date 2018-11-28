@@ -81,4 +81,7 @@ class UserInterface {
     void usingEmulatedInstead() {
         System.out.println("You do not have any connected devices, so we are using the emulated value.");
     }
+    void misplacementNotification(double deviance) {
+        System.out.println("Deviance of " + deviance + " detected. Please check the sensor placement.");
+    }
 }

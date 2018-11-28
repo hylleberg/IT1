@@ -2,7 +2,7 @@
  *
  */
 class NotificationSystem {
-
+    private boolean hasSent = false;
     /**
      * Notification System
      */
@@ -12,15 +12,15 @@ class NotificationSystem {
 
     /**
      *
-     * @param text
      */
-    void send(String text){
+    void send(){
+        if (!hasSent) {
+            System.out.println("*** Doctor called ***"); //send notification to 'wireless system'; call doctor; err for red text
+            this.hasSent = true;
+        } else {
+            System.out.println("*** Doctor already called ***");
 
-        //denne del sørger for en samlet sysout der håndterer tekstlinjer
-        //Den er sat til at give notification i konsol,
-        //men ikke til at tilkalde da dette ville give en fejl når tilkaldesystemet kaldes men ikke eksisterer
-
-        System.out.println(text); //send notification to 'wireless system'; call doctor; err for red text
+        }
     }
 
 }
