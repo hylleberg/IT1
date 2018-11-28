@@ -44,6 +44,7 @@ class SensorRead {
         }
 
     }
+
     int sensorValue() {
         int sensorData = -1;
         SerialPort serialPort = new SerialPort("/dev/tty.usbserial");
@@ -71,6 +72,7 @@ class SensorRead {
         }
         return sensorData;
     }
+
     int emulatedValue() {
         double checkData =
                 Math.random()+
@@ -91,15 +93,3 @@ class SensorRead {
         return this.emulatedValue;
     }
 }
-
-
-
-
-// her dannes den ønskede værdi i intervallet 150-200. return sørger for at der altid er en værdi.
-/*
-
-*/
-
-
-
-

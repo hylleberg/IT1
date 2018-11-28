@@ -4,8 +4,8 @@
 class Runnable {
 
     //Vi starter med værdier - som kan ændres ved input
-    private double min = getValue(150);
-    private double max = getValue(200);
+    private double min = 0;
+    private double max = 0;
     private double urgent = 1;
     private boolean emulated = false;
 
@@ -35,6 +35,8 @@ class Runnable {
         if (this.sensorRead.emulation != this.emulated) {
             this.ui.usingEmulatedInstead();
         }
+        this.min = getValue(150);
+        this.max = getValue(200);
         this.ns = new NotificationSystem();
         this.fw = new WriteToFile();
 
@@ -135,7 +137,7 @@ class Runnable {
      * @param sensorData
      * @return
      */
-    private double getValue(int sensorData){
+    private double getValue(double sensorData){
 
         //vi konverterer til en double for at få decimaler med og begrænser til 2 decimaler
 
