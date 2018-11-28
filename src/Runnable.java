@@ -32,11 +32,15 @@ class Runnable {
 
         this.ui = new UserInterface();
         this.sensorRead = new SensorRead(this.emulated);
-        if (this.sensorRead.emulation != this.emulated) {
+        if (this.sensorRead.emulation != false) {
             this.ui.usingEmulatedInstead();
+            this.min = getValue(150);
+            this.max = getValue(200);
         }
-        this.min = getValue(150);
-        this.max = getValue(200);
+        else {
+            this.min = getValue(37.5);
+            this.max = getValue(38.5);
+        }
         this.ns = new NotificationSystem();
         this.fw = new WriteToFile();
 
@@ -57,7 +61,7 @@ class Runnable {
 
         //latestSensorData specificeres som en int
 
-        int latestSensorData;
+        double latestSensorData;
 
         //Start på løkke til at tjekke værdier hver 15000 ms, printe læst værdi hver 30.000 ms
         //løkke lavet til at count= % 2 (dvs. lige tal) så springer den videre uden at printe læst værdi
