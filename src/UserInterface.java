@@ -15,9 +15,6 @@ class UserInterface {
 
     }
 
-
-    // er en println nødvendig når den er void? Hvad er ideen?
-
     /**
      * Prints notification string text
      *
@@ -35,8 +32,6 @@ class UserInterface {
      * @param wantedValue whether we are asking for min/max/urgent (simply an information)
      * @return the users inputted value, returns -1 if the input value is empty.
      */
-
-    //standardkladde til input. Dovenskab, skrive kladden en gang og genbruge den til når bruger indtaster min max urgent.
 
     double getUserInput(String wantedValue, double stdVal){
 
@@ -56,8 +51,6 @@ class UserInterface {
         }
     }
 
-
-        // DISSE BRUGES ALDRIG?                             ???
 
     @SuppressWarnings("unused")
     void printMax() {

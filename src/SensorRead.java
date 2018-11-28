@@ -38,8 +38,6 @@ class SensorRead {
      * @return int
      */
 
-    //vi laver en metode som ved kald returnerer en (emuleret) værdi fra sensoren
-
     double getValue(){
         if (this.emulation) {
             return emulatedValue();

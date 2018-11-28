@@ -15,7 +15,7 @@ class NotificationSystem {
      */
     void send(){
         if (!hasSent) {
-            System.out.println("*** Doctor called ***"); //send notification to 'wireless system'; call doctor; err for red text
+            System.out.println("*** Doctor called ***");
             this.hasSent = true;
         } else {
             System.out.println("*** Doctor already called ***");
