@@ -57,26 +57,6 @@ class UserInterface {
     }
 
 
-        // DISSE BRUGES ALDRIG?                             ???
-
-    @SuppressWarnings("unused")
-    void printMax() {
-
-        //Prints max value to console
-    }
-
-    @SuppressWarnings("unused")
-    void printMin() {
-
-        //Prints min value to console
-    }
-
-    @SuppressWarnings("unused")
-    void printUrgent() {
-
-        //Prints urgent value to console
-    }
-
 
     void usingEmulatedInstead() {
         System.out.println("You do not have any connected devices, so we are using the emulated value.");
